@@ -5,11 +5,11 @@ const {models} = require ("../models");
 
 /* GET home page. */
 router.get('/',function(req,res,next){
-    res.render('index',{title:'P5_Quiz'});
+    res.render('index',{title:'MARIA'});
 });
 
 router.get('/credits', function(req, res, next) {
-  res.render('credits', { title: 'Credits', name: 'MARIA' });
+  res.render('credits', { title: 'MARIA'});
 });
 
 router.get('/quizzes',(req, res,next){
@@ -17,7 +17,11 @@ router.get('/quizzes',(req, res,next){
         .then(quizzes =>{
             res.render('quizzes', {quizzes})
     })
-    .catch(error => next(error));
+    .catch(err => {
+        res.locals.message=err.message;
+        res.status(404);
+        res.reedner('error');
+    });
 });
 
 module.exports = router;
