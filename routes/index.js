@@ -1,27 +1,26 @@
 var express = require('express');
 var router = express.Router();
 const Sequelize = require("sequelize");
-const {models} = require ("../models");
+const {models} = require ('../models/index');
 
 /* GET home page. */
 router.get('/',function(req,res,next){
-    res.render('index',{title:'MARIA'});
+    res.render('index',{title:'Quiz'});
 });
 
 router.get('/credits', function(req, res, next) {
-  res.render('credits', { title: 'MARIA'});
+  res.render('credits');
 });
 
 router.get('/quizzes',function(req, res,next){
     models.quiz.findAll()
         .then(quizzes =>{
-            res.render('quizzes', {quizzes});
+            var JSONQuizzes =JSON.stringify(quizzes);
+            res.render('quizzes', {quizzes: JSONQuizzes});
     })
-    .catch(err => {
-        res.locals.message=err.message;
-        res.status(404);
-        res.reedner('error');
-    });
+    .catch(error => {
+        console.log(error);
+    })
 });
 
 module.exports = router;
