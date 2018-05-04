@@ -1,22 +1,27 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Quizzes</title>
+    <title>Lista de Quizzes</title>
     <link rel='stylesheet' href='/stylesheets/style/css'/>
 </head>
 <body>
-<h1>Lista de quizzes</h1>
+<h1>Hecho por MARIA LOPEZ</h1>
 <p>
 <a href="/">Home</a>
 <a href="/credits">Credits</a>
 </p>
 <ul>
+<%var quiz = (JSON.parse(quizzes)) %>
+<% console.log(quiz) %>
+<% console.log(quiz[1].question) %>
 <%for(var i in quizzes){ %>
-<% var quiz = quizzes[i]; %>
 <li>
-<%= quiz.question %> : <%= quiz.answer %>
+Pregunta número <% -i %><% -quiz[i].question %>
+Respuesta número <% -i %><% -quiz[i].answer %>
 </li>
 <%}%>
 </ul>
 </body>
 </html>
+
+   
