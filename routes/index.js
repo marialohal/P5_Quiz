@@ -12,10 +12,10 @@ router.get('/credits', function(req, res, next) {
   res.render('credits', { title: 'MARIA'});
 });
 
-router.get('/quizzes',(req, res,next){
+router.get('/quizzes',function(req, res,next){
     models.quiz.findAll()
         .then(quizzes =>{
-            res.render('quizzes', {quizzes})
+            res.render('quizzes', {quizzes});
     })
     .catch(err => {
         res.locals.message=err.message;
